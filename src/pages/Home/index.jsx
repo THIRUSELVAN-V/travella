@@ -1,14 +1,14 @@
 import React from 'react';
-import Navbar from '../../components/navbar'; // Adjust path if needed
+import { Navbar } from '../../components'; // Adjust path if needed
 import beachImg from '../../assets/beach.jpg'; // Background image
 import pagodaImg from '../../assets/pagoda.jpeg'; // Right-side image
 
 export const Home = () => {
   return (
-    <>
+    <div>
       <Navbar />
       <section
-        className="relative bg-cover bg-center h-screen w-full pt-[80px]"
+        className="relative bg-cover bg-center min-h-screen md:h-screen w-full pt-[80px]"
         style={{ backgroundImage: `url(${beachImg})` }}
       >
         {/* Overlay */}
@@ -45,6 +45,6 @@ export const Home = () => {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
