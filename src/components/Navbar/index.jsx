@@ -1,6 +1,11 @@
 import React from 'react';
-
+import { useNavigate } from 'react-router-dom';
 export const Navbar = () => {
+  const navigate = useNavigate(); 
+
+  const handleLogin = () => {
+    navigate('/login'); 
+  };
   const navLinks = [
     { label: "Home", path: "/" },
     { label: "Destinations", path: "/destinations" },
@@ -21,14 +26,14 @@ export const Navbar = () => {
               <li
                 key={index}
                 className="hover:text-blue-600 cursor-pointer"
-                data-path={link.path} // 👈 Path saved here for future use
+                data-path={link.path} 
               >
                 {link.label}
               </li>
             ))}
           </ul>
 
-          <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-all">
+          <button onClick={handleLogin} className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-all">
             Login
           </button>
         </div>
