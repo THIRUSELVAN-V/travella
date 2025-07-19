@@ -1,23 +1,17 @@
 // components/AuthLayout.jsx
 import React from "react";
-import GoogleLoginPage from "../../components/Log/page";
-import RegisterPage from "../../components/Res/page";
+import { GoogleLoginPage } from "../../components";
+import { RegisterPage } from "../../components";
 
-const AuthLayout = ({ page,  imageSubText }) => {
+export const AuthLayout = ({ page, imageSubText }) => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-blue-400">
       <div className="bg-white rounded-3xl shadow-lg flex w-full max-w-5xl overflow-hidden">
         {/* Left Side */}
-        <div className="hidden md:flex flex-col justify-between items-center bg-blue-500 text-white w-1/2 p-8 relative">
+        <div className="hidden md:flex flex-col justify-evenly items-center bg-blue-500 text-white w-1/2 p-8 relative">
           <div className="flex flex-col items-center">
             <h1 className="text-4xl font-bold mb-2">Travelista Tours</h1>
-              {/* <p className="text-center">
-              Adventure awaits – register now and start your journey!
-            </p>
-            <p className="text-center">
-              Travel is the only purchase that enriches you in ways beyond material wealth
-            </p> */}
-            <p className="text-center">{imageSubText}</p>
+            <p className="text-center mt-3">{imageSubText}</p>
           </div>
           <img
             src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
@@ -28,11 +22,11 @@ const AuthLayout = ({ page,  imageSubText }) => {
 
         {/* Right Side (Form Area) */}
         <div className="flex flex-col w-[32rem] justify-center items-center relative">
-          { page == "login" &&
-          <GoogleLoginPage/> 
+          {page == "login" &&
+            <GoogleLoginPage />
           }
-          {page == "register" && 
-          <RegisterPage/>
+          {page == "register" &&
+            <RegisterPage />
           }
         </div>
       </div>
@@ -40,4 +34,3 @@ const AuthLayout = ({ page,  imageSubText }) => {
   );
 };
 
-export default AuthLayout;

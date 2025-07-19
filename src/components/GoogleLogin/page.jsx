@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-const GoogleLogin = ({ onSuccess }) => {
+export const GoogleLogin = ({ onSuccess }) => {
   const buttonDiv = useRef(null);
 
   useEffect(() => {
@@ -58,5 +58,3 @@ const GoogleLogin = ({ onSuccess }) => {
 
   return <div ref={buttonDiv}></div>;
 };
-
-export default GoogleLogin;

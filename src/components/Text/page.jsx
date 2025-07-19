@@ -1,7 +1,7 @@
 // components/InputField.jsx
 import React from "react";
 
-const InputField = ({ icon: Icon, type, name, value, onChange, placeholder }) => {
+export const InputField = ({ icon: Icon, type, name, value, onChange, placeholder }) => {
   return (
     <div>
       <label className="block text-blue-500 text-sm font-semibold mb-1 capitalize">
@@ -23,4 +23,3 @@ const InputField = ({ icon: Icon, type, name, value, onChange, placeholder }) =>
   );
 };
 
-export default InputField;

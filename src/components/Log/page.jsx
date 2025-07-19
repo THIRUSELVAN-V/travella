@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import InputField from "../Text/page.jsx";
+import { InputField } from "../../components";
 import { MdOutlineEmail, MdOutlineLock } from "react-icons/md";
-import GoogleLogin from "../../components/GoogleLogin/page";
-import BasicButtons from "../Button/Button.jsx";
+import { GoogleLogin } from '../../components';
+import { BasicButtons } from "../../components";
 
-const GoogleLoginPage = () => {
+export const GoogleLoginPage = () => {
   const [user, setUser] = useState(null);
   const [formData, setFormData] = useState({ email: "", password: "" });
 
@@ -29,7 +29,7 @@ const GoogleLoginPage = () => {
   };
 
   return (
-    <div className="w-full flex flex-col items-center justify-center">
+    <div className="w-full  h-[39rem] flex flex-col items-center justify-center">
       <h2 className="text-4xl font-bold  text-blue-500 mb-2">Welcome</h2>
       <p className="text-gray-500 mb-6">Login with Email</p>
 
@@ -69,12 +69,6 @@ const GoogleLoginPage = () => {
                 Forgot password?
               </a>
             </div>
-            {/* <button
-              type="submit"
-              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded transition duration-200"
-            >
-              LOGIN
-            </button> */}
             <BasicButtons
               name="LOGIN"
               type="submit"
@@ -102,4 +96,3 @@ const GoogleLoginPage = () => {
   );
 };
 
-export default GoogleLoginPage;
