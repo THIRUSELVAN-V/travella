@@ -49,39 +49,49 @@ export const Home = () => {
           </div>
 
           {/* Deck of cards spread horizontally */}
-          <div className="relative w-[400px] h-[320px]">
-            {images.map((card, i) => {
-              const index = (i - activeIndex + images.length) % images.length;
+         <div className="relative w-[400px]   h-[320px] overflow-visible">
+  {images.map((card, i) => {
+    const index = (i - activeIndex + images.length) % images.length;
 
-              // Spread layout
-              const spread = index * 30 - 45; // center the cards and spread them
-              const translateY = index * 10;
-              const scale = 1 - index * 0.07;
-              const opacity = index === images.length - 1 ? 0 : 1;
-              const zIndex = images.length - index;
+    const offsetX = index * 10 - 30;
+    const offsetY = index * 6;
+    const scale = 1 - index * 0.03;
+    const rotate = index === 0 ? 0 : index * 6; 
+    const zIndex = images.length - index;
+    const isDisappearing = index === images.length - 1;
 
-              return (
-                <div
-                  key={i}
-                  className="absolute top-0 left-1/2 transition-all duration-[1000ms] ease-in-out"
-                  style={{
-                    transform: `translate(-50%, ${translateY}px) translateX(${spread}px) scale(${scale})`,
-                    opacity,
-                    zIndex,
-                  }}
-                >
-                  <div className="bg-white p-2 rounded-lg shadow-xl text-center w-[240px]">
-                    <img
-                      src={card.img}
-                      alt={card.label}
-                      className="w-full h-40 object-cover rounded-md"
-                    />
-                    <p className="mt-2 font-semibold">{card.label}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+    // Transform for disappearing card
+    const transform = isDisappearing
+      ? `translate(-300px, ${offsetY}px) scale(${scale}) rotate(-45deg)`
+      : `translate(-50%, ${offsetY}px) translateX(${offsetX}px) scale(${scale}) rotate(${rotate}deg)`;
+
+    return (
+      <div
+        key={i}
+        className="absolute top-0 left-1/2  transition-all duration-[800ms] ease-in-out"
+        style={{
+          transform,
+          opacity: isDisappearing ? 0 : 1,
+          zIndex,
+        }}
+      >
+        <div className="bg-white p-2  rounded-2xl shadow-2xl text-center w-[300px]">
+  <img
+    src={card.img}
+    alt={card.label}
+    className="w-full h-52 object-cover rounded-lg"
+  />
+  <p className="mt-3 text-lg font-semibold">{card.label}</p>
+</div>
+
+      </div>
+    );
+  })}
+</div>
+
+
+
+
         </div>
       </section>
     </div>
