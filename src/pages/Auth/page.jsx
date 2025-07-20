@@ -10,7 +10,7 @@ export const AuthLayout = ({ page, imageSubText }) => {
         {/* Left Side */}
         <div className="hidden md:flex flex-col justify-evenly items-center bg-blue-500 text-white w-1/2 p-8 relative">
           <div className="flex flex-col items-center">
-            <h1 className="text-4xl font-bold mb-2">Travelista Tours</h1>
+            <h1 className="text-4xl font-bold mb-2">Travella</h1>
             <p className="text-center mt-3">{imageSubText}</p>
           </div>
           <img
