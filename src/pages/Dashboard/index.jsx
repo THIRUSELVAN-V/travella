@@ -9,7 +9,7 @@ export const Dashboard = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold">Welcome {user?.role}</h1>
+      <h1 className="text-2xl font-bold">Welcome {user?.name}</h1>
       <button
         onClick={() => {
           logout()
