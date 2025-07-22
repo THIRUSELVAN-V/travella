@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ Step 1: import navigate
 import { Navbar } from "../../components";
 import beachImg from "../../assets/beach.jpg";
 import meghamalaiImg from "../../assets/meghamalai.avif";
@@ -15,6 +16,7 @@ const images = [
 
 export const Home = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const navigate = useNavigate(); // ✅ Step 2: setup navigate
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -22,6 +24,11 @@ export const Home = () => {
     }, 4000);
     return () => clearInterval(interval);
   }, []);
+
+  // ✅ Step 3: Handle Explore button click
+  const handleExplore = () => {
+    navigate("/sample");
+  };
 
   return (
     <div>
@@ -43,55 +50,52 @@ export const Home = () => {
               Create memories that last a lifetime. <br />
               Begin your adventure with us.
             </p>
-            <button className="bg-blue-600 hover:bg-blue-700 px-6 py-3 text-white font-semibold rounded-md transition-all">
+            <button
+              onClick={handleExplore} // ✅ Navigate to /sample
+              className="bg-blue-600 hover:bg-blue-700 px-6 py-3 text-white font-semibold rounded-md transition-all"
+            >
               Explore
             </button>
           </div>
 
-          {/* Deck of cards spread horizontally */}
-         <div className="relative w-[400px]   h-[320px] overflow-visible">
-  {images.map((card, i) => {
-    const index = (i - activeIndex + images.length) % images.length;
+          {/* Deck of cards carousel */}
+          <div className="relative w-[400px] h-[320px] overflow-visible">
+            {images.map((card, i) => {
+              const index = (i - activeIndex + images.length) % images.length;
 
-    const offsetX = index * 10 - 30;
-    const offsetY = index * 6;
-    const scale = 1 - index * 0.03;
-    const rotate = index === 0 ? 0 : index * 6; 
-    const zIndex = images.length - index;
-    const isDisappearing = index === images.length - 1;
+              const offsetX = index * 10 - 30;
+              const offsetY = index * 6;
+              const scale = 1 - index * 0.03;
+              const rotate = index === 0 ? 0 : index * 6;
+              const zIndex = images.length - index;
+              const isDisappearing = index === images.length - 1;
 
-    // Transform for disappearing card
-    const transform = isDisappearing
-      ? `translate(-300px, ${offsetY}px) scale(${scale}) rotate(-45deg)`
-      : `translate(-50%, ${offsetY}px) translateX(${offsetX}px) scale(${scale}) rotate(${rotate}deg)`;
+              const transform = isDisappearing
+                ? `translate(-300px, ${offsetY}px) scale(${scale}) rotate(-45deg)`
+                : `translate(-50%, ${offsetY}px) translateX(${offsetX}px) scale(${scale}) rotate(${rotate}deg)`;
 
-    return (
-      <div
-        key={i}
-        className="absolute top-0 left-1/2  transition-all duration-[800ms] ease-in-out"
-        style={{
-          transform,
-          opacity: isDisappearing ? 0 : 1,
-          zIndex,
-        }}
-      >
-        <div className="bg-white p-2  rounded-2xl shadow-2xl text-center w-[300px]">
-  <img
-    src={card.img}
-    alt={card.label}
-    className="w-full h-52 object-cover rounded-lg"
-  />
-  <p className="mt-3 text-lg font-semibold">{card.label}</p>
-</div>
-
-      </div>
-    );
-  })}
-</div>
-
-
-
-
+              return (
+                <div
+                  key={i}
+                  className="absolute top-0 left-1/2 transition-all duration-[800ms] ease-in-out"
+                  style={{
+                    transform,
+                    opacity: isDisappearing ? 0 : 1,
+                    zIndex,
+                  }}
+                >
+                  <div className="bg-white p-2 rounded-2xl shadow-2xl text-center w-[300px]">
+                    <img
+                      src={card.img}
+                      alt={card.label}
+                      className="w-full h-52 object-cover rounded-lg"
+                    />
+                    <p className="mt-3 text-lg font-semibold">{card.label}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
     </div>

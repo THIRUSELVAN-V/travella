@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+:root {
+  /* Royal Blue Theme (default) */
+  --color-primary: #4169e1;   /* Royal Blue */
+  --color-secondary: #6495ed; /* Cornflower Blue */
+  --color-bg: #f0f4ff;        /* Light bluish background */
+  --color-text: #0f172a;      /* Slate-like deep text */
+}
