@@ -5,7 +5,8 @@ export {Dashboard} from "./Dashboard";
 export {Login} from "./Login";
 export {Unauthorized} from "./Unauthorized";
 export {AdminPanel} from "./AdminPanel";
-export {AuthLayout} from "./Auth/page"
+export {AuthLayout} from "./Auth/page";
+export {Sample} from "./sample";
 
 
 

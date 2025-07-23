@@ -1,6 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { About, AdminPanel, Dashboard, Home, AuthLayout, NotFound, Unauthorized } from '../pages'
+import { About, AdminPanel, Dashboard, Home, AuthLayout, NotFound, Unauthorized, Sample } from '../pages'
 import ProtectedRoute from './ProtectedRoute'
 const AppRoutes = () => {
   return (
@@ -12,6 +12,7 @@ const AppRoutes = () => {
       <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       <Route path="/admin" element={<ProtectedRoute requiredRole="admin"><AdminPanel /></ProtectedRoute>} />
       <Route path="/unauthorized" element={<Unauthorized />} />
+      <Route path="/sample" element={<Sample />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   )
