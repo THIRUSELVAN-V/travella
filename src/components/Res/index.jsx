@@ -1,4 +1,3 @@
-// src/pages/Register/RegisterPage.jsx
 import React, { useState } from "react";
 import { InputField } from "..";
 import { MdOutlineEmail, MdOutlineLock } from "react-icons/md";
@@ -17,35 +16,35 @@ export const RegisterPage = () => {
     password: "",
     confirmPassword: ""
   });
- const navigate = useNavigate(); 
-  const login = useAuthStore((state) => state.login)
-  const setToken = useAuthStore((state) => state.setToken)
+
+  const navigate = useNavigate(); 
+  const login = useAuthStore((state) => state.login);
+  const setToken = useAuthStore((state) => state.setToken);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-   const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // Reset previous error
-  if (formData.password !== formData.confirmPassword) {
-      setError("confirmPassword do not match");
+    setError("");
+    
+    if (formData.password !== formData.confirmPassword) {
+      setError("Confirm password does not match");
       return;
     }
+
     try {
       const response = await api.post('/auth/register', formData);
-  
       localStorage.setItem('token', response.data.token);
       setToken(response.data.token);
-      login(response.data.user); // Optional: login state if needed
+      login(response.data.user);
       navigate('/dashboard');
     } catch (err) {
-      console.error("Login failed:", err);
-  
+      console.error("Registration failed:", err);
       if (err.response) {
-        // Server responded with an error
-        const msg = err.response.data.error || "Login failed. Please try again.";
+        const msg = err.response.data.error || "Registration failed. Please try again.";
         setError(msg);
       } else {
         setError("Network error. Please try again later.");
@@ -56,14 +55,14 @@ export const RegisterPage = () => {
   const handleGoogleSuccess = (userData) => {
     console.log("Google login successful:", userData);
     login(userData);
-    navigate('/dashboard') 
+    navigate('/dashboard');
   };
 
   return (
     <div className="w-full h-[39rem] flex flex-col items-center justify-center p-5">
-      <h2 className="text-4xl font-bold text-blue-500 mb-2">Register</h2>
-      <p className="text-gray-500 mb-2">Create your account</p>
-      
+      <h2 className="text-4xl font-bold text-primary mb-2">Register</h2>
+      <p className="text-muted-foreground mb-2">Create your account</p>
+
       <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-4">
         <InputField
           icon={FaUser}
@@ -89,7 +88,6 @@ export const RegisterPage = () => {
           onChange={handleInputChange}
           placeholder="Enter password"
         />
-        
         <InputField
           icon={MdOutlineLock}
           type="password"
@@ -98,28 +96,31 @@ export const RegisterPage = () => {
           onChange={handleInputChange}
           placeholder="Confirm password"
         />
+        
         {error && (
-  <div className="text-red-500 text-sm text-center mb-2">
-    {error}
-  </div>
-)}
+          <div className="text-destructive text-sm text-center mb-2">
+            {error}
+          </div>
+        )}
 
         <BasicButtons
-          name="REGSITER"
+          name="REGISTER"
           type="submit"
-          className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded transition duration-200"
+          className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-2 rounded transition duration-200"
         />
       </form>
+
       <div className="flex items-center my-4 w-full max-w">
-        <div className="flex-grow h-px bg-gray-200" />
-        <span className="mx-2 text-gray-400 text-sm">OR</span>
-        <div className="flex-grow h-px bg-gray-200" />
+        <div className="flex-grow h-px bg-border" />
+        <span className="mx-2 text-muted-foreground text-sm">OR</span>
+        <div className="flex-grow h-px bg-border" />
       </div>
+
       <GoogleLogin onSuccess={handleGoogleSuccess} />
 
-      <div className="text-center text-sm text-gray-500 mt-2">
+      <div className="text-center text-sm text-muted-foreground mt-2">
         Already have an account?{" "}
-        <a href="/login" className="text-blue-500 font-semibold hover:underline">
+        <a href="/login" className="text-primary font-semibold hover:underline">
           Login here
         </a>
       </div>

@@ -1,11 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+
 export const Navbar = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleLogin = () => {
-    navigate('/login'); 
+    navigate('/login');
   };
+
   const navLinks = [
     { label: "Home", path: "/" },
     { label: "Destinations", path: "/destinations" },
@@ -16,7 +18,7 @@ export const Navbar = () => {
   return (
     <nav className="bg-white shadow-md py-4 px-8 fixed top-0 left-0 right-0 z-50">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <div className="text-2xl font-bold text-blue-600">
+        <div className="text-2xl font-bold text-primary">
           Travella
         </div>
 
@@ -25,15 +27,18 @@ export const Navbar = () => {
             {navLinks.map((link, index) => (
               <li
                 key={index}
-                className="hover:text-blue-600 cursor-pointer"
-                data-path={link.path} 
+                className="hover:text-primary cursor-pointer"
+                data-path={link.path}
               >
                 {link.label}
               </li>
             ))}
           </ul>
 
-          <button onClick={handleLogin} className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-all">
+          <button
+            onClick={handleLogin}
+            className="bg-primary text-primary-foreground px-4 py-2 rounded-md hover:opacity-90 transition-all"
+          >
             Login
           </button>
         </div>

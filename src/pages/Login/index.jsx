@@ -32,25 +32,31 @@ export const Login = () => {
   }
 
   return (
-    <div className="p-4 h-screen flex flex-col  items-center  justify-center">
-      <h2 className="text-xl font-semibold">Login</h2>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-[20rem] mt-4 ">
+    <div className="p-4 h-screen flex flex-col items-center justify-center bg-background text-foreground">
+      <h2 className="text-2xl font-bold text-primary mb-4">Login</h2>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-4 w-[20rem] bg-white p-6 rounded-xl shadow-lg"
+      >
         <input
-          className="border p-2 rounded"
+          className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
           type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
         <input
-          className="border p-2 rounded"
+          className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        {error && <p className="text-red-500">{error}</p>}
-        <button className="bg-blue-600 text-white px-4 py-2 rounded" type="submit">
+        {error && <p className="text-red-500 text-sm">{error}</p>}
+        <button
+          className="bg-primary text-primary-foreground px-4 py-2 rounded-md font-semibold hover:brightness-110 transition duration-200"
+          type="submit"
+        >
           Login
         </button>
       </form>

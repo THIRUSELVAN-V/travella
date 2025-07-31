@@ -13,8 +13,11 @@ export default {
         'card-foreground': 'var(--card-foreground)',
         popover: 'var(--popover)',
         'popover-foreground': 'var(--popover-foreground)',
-        primary: 'var(--primary)',
-        'primary-foreground': 'var(--primary-foreground)',
+
+        // 👉 Updated Primary to match 3rd column color
+        primary: '#3DBBEE',
+        'primary-foreground': '#ffffff',
+
         secondary: 'var(--secondary)',
         'secondary-foreground': 'var(--secondary-foreground)',
         muted: 'var(--muted)',
