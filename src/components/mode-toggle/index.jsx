@@ -19,11 +19,11 @@ export function ModeToggle() {
 
   return (
     <Tooltip title={`Switch to ${isDark ? "Light" : "Dark"} mode`}>
-      <IconButton onClick={toggleTheme} color="inherit">
+      <IconButton onClick={toggleTheme}  color="inherit">
         {isDark ? (
-          <Moon className="h-5 w-5" />
+          <Moon className="h-5 w-5  text-foreground" />
         ) : (
-          <Sun className="h-5 w-5" />
+          <Sun className="h-5 w-5 text-foreground" />
         )}
         <span className="sr-only">Toggle theme</span>
       </IconButton>

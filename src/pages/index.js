@@ -2,11 +2,11 @@ export { Home } from "./Home";
 export { About } from "./About";
 export { NotFound } from "./NotFound";
 export {Dashboard} from "./Dashboard";
-export {Login} from "./Login";
 export {Unauthorized} from "./Unauthorized";
 export {AdminPanel} from "./AdminPanel";
-export {AuthLayout} from "./Auth/page";
+export {Login} from "./Login";
 export {Sample} from "./sample";
+export {StyleShowcase} from "./StyleShowcase";
 
 
 
