@@ -1,59 +1,36 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useAuthStore } from '../../store/authStore'
+// components/AuthLayout.jsx
+import React from "react";
+import { GoogleLoginPage } from "../../components";
+import { RegisterPage } from "../../components";
 
-// Simulated backend response
-const mockLoginAPI = ({ username, password }) => {
-  if (username === 'admin' && password === 'admin123') {
-    return { token: 'admin-jwt-token', role: 'admin' }
-  } else if (username === 'user' && password === 'user123') {
-    return { token: 'user-jwt-token', role: 'user' }
-  } else {
-    return null
-  }
-}
-
-export const Login = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const login = useAuthStore((state) => state.login)
-  const navigate = useNavigate()
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    const result = mockLoginAPI({ username, password })
-    if (result) {
-      login(result)
-      navigate('/dashboard')
-    } else {
-      setError('Invalid credentials')
-    }
-  }
-
+export const Login = ({ page, imageSubText }) => {
   return (
-    <div className="p-4 h-screen flex flex-col  items-center  justify-center">
-      <h2 className="text-xl font-semibold">Login</h2>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-[20rem] mt-4 ">
-        <input
-          className="border p-2 rounded"
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          className="border p-2 rounded"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {error && <p className="text-red-500">{error}</p>}
-        <button className="bg-blue-600 text-white px-4 py-2 rounded" type="submit">
-          Login
-        </button>
-      </form>
+    <div className="min-h-screen flex items-center justify-center bg-primary">
+      <div className="bg-background rounded-3xl shadow-lg flex w-full max-w-5xl overflow-hidden">
+        {/* Left Side */}
+        <div className="hidden md:flex flex-col justify-evenly items-center bg-primary-active text-primary-foreground w-1/2 p-8 relative">
+          <div className="flex flex-col items-center">
+            <h1 className="text-4xl font-bold mb-2">Travelista Tours</h1>
+            <p className="text-center mt-3">{imageSubText}</p>
+          </div>
+          <img
+            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
+            alt="Travel"
+            className="rounded-2xl mt-8 mb-8 object-cover w-full h-80 shadow-lg"
+          />
+        </div>
+
+        {/* Right Side (Form Area) */}
+        <div className="flex flex-col w-[32rem] justify-center items-center relative">
+          {page == "login" &&
+            <GoogleLoginPage />
+          }
+          {page == "register" &&
+            <RegisterPage />
+          }
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
+

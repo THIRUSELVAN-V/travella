@@ -34,16 +34,16 @@ export const Home = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 flex flex-col md:flex-row items-center justify-between h-full">
           {/* Quotes */}
-          <div className="text-white max-w-xl space-y-6 mb-10 md:mb-0 md:mr-10">
+          <div className="text-background max-w-xl space-y-6 mb-10 md:mb-0 md:mr-10">
             <h1 className="text-5xl font-bold">Enjoy your</h1>
-            <h2 className="text-5xl font-semibold italic text-blue-200">Moment</h2>
-            <p className="text-lg text-gray-200 leading-relaxed">
+            <h2 className="text-5xl font-semibold italic text-primary">Moment</h2>
+            <p className="text-lg text-baground leading-relaxed ">
               Travel isn't about places, it's about moments. <br />
               Moments that make you feel alive and free. <br />
               Create memories that last a lifetime. <br />
               Begin your adventure with us.
             </p>
-            <button className="bg-blue-600 hover:bg-blue-700 px-6 py-3 text-white font-semibold rounded-md transition-all">
+            <button className="bg-primary hover:bg-primary-hover px-6 py-3 text-primary-foreground font-semibold rounded-md transition-all">
               Explore
             </button>
           </div>
@@ -75,7 +75,7 @@ export const Home = () => {
           zIndex,
         }}
       >
-        <div className="bg-white p-2  rounded-2xl shadow-2xl text-center w-[300px]">
+        <div className="bg-card p-2  rounded-2xl shadow-2xlb text-center w-[300px] text-card-foreground">
   <img
     src={card.img}
     alt={card.label}

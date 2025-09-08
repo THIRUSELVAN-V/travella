@@ -2,16 +2,16 @@
 import React from 'react'
 import './App.css'
 import AppRoutes from './routes/AppRoutes'
+import { ThemeProvider } from './theme/theme-provider'
 
 
 function App() {
   return (
-    <div className='min-h-screen bg-gray-100 text-gray-800'>
-      {/* <GoogleLoginpage/> */}
-      {/* <RegisterPage/> */}
-      {/* <AuthLayout/> */}
-      <AppRoutes/>
-    </div>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <div className='min-h-screen '>
+        <AppRoutes/>
+      </div>
+    </ThemeProvider>
 
   )
 }

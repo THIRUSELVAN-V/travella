@@ -61,8 +61,8 @@ export const RegisterPage = () => {
 
   return (
     <div className="w-full h-[39rem] flex flex-col items-center justify-center p-5">
-      <h2 className="text-4xl font-bold text-blue-500 mb-2">Register</h2>
-      <p className="text-gray-500 mb-2">Create your account</p>
+      <h2 className="text-4xl font-bold text-primary mb-2">Register</h2>
+      <p className="text-foreground mb-2">Create your account</p>
       
       <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-4">
         <InputField
@@ -99,7 +99,7 @@ export const RegisterPage = () => {
           placeholder="Confirm password"
         />
         {error && (
-  <div className="text-red-500 text-sm text-center mb-2">
+  <div className="text-destructive text-sm text-center mb-2">
     {error}
   </div>
 )}
@@ -107,7 +107,7 @@ export const RegisterPage = () => {
         <BasicButtons
           name="REGSITER"
           type="submit"
-          className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded transition duration-200"
+          className="w-full !bg-primary hover:bg-primary-hover text-primary-foreground font-semibold py-2 rounded transition duration-200"
         />
       </form>
       <div className="flex items-center my-4 w-full max-w">
@@ -119,7 +119,7 @@ export const RegisterPage = () => {
 
       <div className="text-center text-sm text-gray-500 mt-2">
         Already have an account?{" "}
-        <a href="/login" className="text-blue-500 font-semibold hover:underline">
+        <a href="/login" className="text-primary font-semibold hover:underline">
           Login here
         </a>
       </div>

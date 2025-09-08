@@ -57,8 +57,8 @@ export const GoogleLoginPage = () => {
 
   return (
     <div className="w-full  h-[39rem] flex flex-col items-center justify-center">
-      <h2 className="text-4xl font-bold  text-blue-500 mb-2">Welcome</h2>
-      <p className="text-gray-500 mb-6">Login with Email</p>
+      <h2 className="text-4xl font-bold  text-primary mb-2">Welcome</h2>
+      <p className="text-foreground mb-6">Login with Email</p>
 
       {user ? (
         <div className="text-center">
@@ -75,7 +75,7 @@ export const GoogleLoginPage = () => {
       ) : (
         <>
         {error && (
-  <div className="text-red-500 text-sm text-center mb-2">
+  <div className="text-destructive text-sm text-center mb-2">
     {error}
   </div>
 )}
@@ -104,7 +104,7 @@ export const GoogleLoginPage = () => {
             <BasicButtons
               name="LOGIN"
               type="submit"
-              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded transition duration-200"
+              className="w-full !bg-primary hover:bg-primary-hover text-primary-foreground font-semibold py-2 rounded transition duration-200"
             />
           </form>
 
@@ -120,7 +120,7 @@ export const GoogleLoginPage = () => {
 
       <div className="text-center text-sm text-gray-500 mt-6">
         Don't have an account?{" "}
-        <a href="/register" className="text-blue-500 font-semibold hover:underline">
+        <a href="/register" className="text-primary font-semibold hover:underline">
           Register Now
         </a>
       </div>
