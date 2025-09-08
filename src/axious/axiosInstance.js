@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Create a reusable Axios instance
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5000/api", // replace with your backend base URL
+  baseURL: "https://travella-server.onrender.com/api", // deployed backend base URL
   headers: {
     'Content-Type': 'application/json',
   },

@@ -31,7 +31,7 @@ export const GoogleLoginPage = () => {
     localStorage.setItem('token', response.data.token);
     setToken(response.data.token);
     login(response.data.user); // Optional: login state if needed
-    navigate('/dashboard');
+    navigate('/');
   } catch (err) {
     console.error("Login failed:", err);
 
@@ -47,7 +47,7 @@ export const GoogleLoginPage = () => {
   const handleGoogleSuccess = (userData) => {
     console.log("Google login successful:", userData);
     login(userData);
-    navigate('/dashboard') 
+    navigate('/') 
   };
 
   const handleLogout = () => {
@@ -65,12 +65,7 @@ export const GoogleLoginPage = () => {
           <img src={user.picture}  alt="Profile" className="rounded-full w-16 h-16 mx-auto mb-4 object-cover" />
           <h2 className="text-xl font-semibold">{user.name}</h2>
           <p className="text-gray-600">{user.email}</p>
-          <button
-            onClick={handleLogout}
-            className="mt-4 bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Logout
-          </button>
+          
         </div>
       ) : (
         <>
