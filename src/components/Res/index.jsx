@@ -1,44 +1,69 @@
 // src/pages/Register/RegisterPage.jsx
 import React, { useState } from "react";
-import { InputField } from "../../components";
+import { InputField } from "..";
 import { MdOutlineEmail, MdOutlineLock } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
-import { BasicButtons } from "../../components";
-import { GoogleLogin } from "../../components";
+import { BasicButtons } from "..";
+import { GoogleLogin } from "..";
+import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "../../store/authStore";
+import { api } from "../../axious/api";
 
 export const RegisterPage = () => {
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     confirmPassword: ""
   });
-  const [user, setUser] = useState(null);
+ const navigate = useNavigate(); 
+  const login = useAuthStore((state) => state.login)
+  const setToken = useAuthStore((state) => state.setToken)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match");
+    setError(""); // Reset previous error
+  if (formData.password !== formData.confirmPassword) {
+      setError("confirmPassword do not match");
       return;
     }
-    console.log("Register attempt with:", formData);
+    try {
+      const response = await api.post('/auth/register', formData);
+  
+      localStorage.setItem('token', response.data.token);
+      setToken(response.data.token);
+      login(response.data.user); // Optional: login state if needed
+      navigate('/');
+    } catch (err) {
+      console.error("Login failed:", err);
+  
+      if (err.response) {
+        // Server responded with an error
+        const msg = err.response.data.error || "Login failed. Please try again.";
+        setError(msg);
+      } else {
+        setError("Network error. Please try again later.");
+      }
+    }
   };
 
   const handleGoogleSuccess = (userData) => {
     console.log("Google login successful:", userData);
-    setUser(userData);
+    login(userData);
+    navigate('/') 
   };
 
   return (
     <div className="w-full h-[39rem] flex flex-col items-center justify-center p-5">
-      <h2 className="text-4xl font-bold text-blue-500 mb-2">Register</h2>
-      <p className="text-gray-500 mb-2">Create your account</p>
-
+      <h2 className="text-4xl font-bold text-primary mb-2">Register</h2>
+      <p className="text-foreground mb-2">Create your account</p>
+      
       <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-4">
         <InputField
           icon={FaUser}
@@ -64,6 +89,7 @@ export const RegisterPage = () => {
           onChange={handleInputChange}
           placeholder="Enter password"
         />
+        
         <InputField
           icon={MdOutlineLock}
           type="password"
@@ -72,11 +98,16 @@ export const RegisterPage = () => {
           onChange={handleInputChange}
           placeholder="Confirm password"
         />
+        {error && (
+  <div className="text-destructive text-sm text-center mb-2">
+    {error}
+  </div>
+)}
 
         <BasicButtons
           name="REGSITER"
           type="submit"
-          className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded transition duration-200"
+          className="w-full !bg-primary hover:bg-primary-hover text-primary-foreground font-semibold py-2 rounded transition duration-200"
         />
       </form>
       <div className="flex items-center my-4 w-full max-w">
@@ -88,7 +119,7 @@ export const RegisterPage = () => {
 
       <div className="text-center text-sm text-gray-500 mt-2">
         Already have an account?{" "}
-        <a href="/login" className="text-blue-500 font-semibold hover:underline">
+        <a href="/login" className="text-primary font-semibold hover:underline">
           Login here
         </a>
       </div>

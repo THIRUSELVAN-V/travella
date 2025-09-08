@@ -1,6 +1,9 @@
 export { Counter } from "./Counter";
-export { BasicButtons } from "./Button/Button"
-export { GoogleLogin } from './GoogleLogin/page'
-export { GoogleLoginPage } from './Log/page'
-export { RegisterPage } from './Res/page'
-export { InputField } from './Text/page'
+export { Navbar } from "./Navbar";
+export { BasicButtons } from "./Button"
+export { GoogleLogin } from './GoogleLogin'
+export { GoogleLoginPage } from './Log'
+export { RegisterPage } from './Res'
+export { InputField } from './Text'
+export { ModeToggle } from './mode-toggle'
+export { default as Slider } from './Slider'

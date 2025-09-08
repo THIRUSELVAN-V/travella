@@ -1,7 +1,10 @@
 import { useEffect, useRef } from "react";
+import { api } from "../../axious/api";
+import { useAuthStore } from "../../store/authStore";
 
 export const GoogleLogin = ({ onSuccess }) => {
   const buttonDiv = useRef(null);
+  const setToken = useAuthStore((state) => state.setToken)
 
   useEffect(() => {
     const loadGoogleScript = () => {
@@ -19,19 +22,23 @@ export const GoogleLogin = ({ onSuccess }) => {
       });
     };
 
-    const handleCredentialResponse = (response) => {
-      const jwt = response.credential;
-      const base64Url = jwt.split(".")[1];
-      const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-      const jsonPayload = decodeURIComponent(
-        atob(base64)
-          .split("")
-          .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
-          .join("")
-      );
-      const userData = JSON.parse(jsonPayload);
-      onSuccess(userData);
-    };
+    const handleCredentialResponse = async (response) => {
+  try {
+    const idToken = response.credential;
+
+    const res = await api.post('/auth/google', { idToken }); // call your backend
+
+    const userData = res.data.user; // assuming your backend returns `{ success, token, user }`
+
+    // Save token if needed
+    localStorage.setItem('token', res.data.token);
+    setToken(res.data.token)
+
+    onSuccess(userData); // pass to parent component
+  } catch (error) {
+    console.error('Google login failed:', error);
+  }
+};
 
     const initGoogle = async () => {
       await loadGoogleScript();
@@ -54,7 +61,7 @@ export const GoogleLogin = ({ onSuccess }) => {
     };
 
     initGoogle();
-  }, [onSuccess]);
+  }, [onSuccess,setToken]);
 
   return <div ref={buttonDiv}></div>;
 };

@@ -1,26 +1,53 @@
 import React, { useState } from "react";
-import { InputField } from "../../components";
+import { InputField } from "..";
 import { MdOutlineEmail, MdOutlineLock } from "react-icons/md";
-import { GoogleLogin } from '../../components';
-import { BasicButtons } from "../../components";
+import { GoogleLogin } from '..';
+import { BasicButtons } from "..";
+import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "../../store/authStore";
+import { api } from "../../axious/api";
 
 export const GoogleLoginPage = () => {
+  const [error, setError] = useState("");
+
   const [user, setUser] = useState(null);
   const [formData, setFormData] = useState({ email: "", password: "" });
+  const navigate = useNavigate(); 
+  const login = useAuthStore((state) => state.login)
+  const setToken = useAuthStore((state) => state.setToken)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Login attempt with:", formData);
-  };
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  setError(""); // Reset previous error
 
+  try {
+    const response = await api.post('/auth/login', formData);
+
+    localStorage.setItem('token', response.data.token);
+    setToken(response.data.token);
+    login(response.data.user); // Optional: login state if needed
+    navigate('/');
+  } catch (err) {
+    console.error("Login failed:", err);
+
+    if (err.response) {
+      // Server responded with an error
+      const msg = err.response.data.error || "Login failed. Please try again.";
+      setError(msg);
+    } else {
+      setError("Network error. Please try again later.");
+    }
+  }
+};
   const handleGoogleSuccess = (userData) => {
     console.log("Google login successful:", userData);
-    setUser(userData);
+    login(userData);
+    navigate('/') 
   };
 
   const handleLogout = () => {
@@ -30,23 +57,23 @@ export const GoogleLoginPage = () => {
 
   return (
     <div className="w-full  h-[39rem] flex flex-col items-center justify-center">
-      <h2 className="text-4xl font-bold  text-blue-500 mb-2">Welcome</h2>
-      <p className="text-gray-500 mb-6">Login with Email</p>
+      <h2 className="text-4xl font-bold  text-primary mb-2">Welcome</h2>
+      <p className="text-foreground mb-6">Login with Email</p>
 
       {user ? (
         <div className="text-center">
-          <img src={user.picture} alt="Profile" className="rounded-full w-16 h-16 mx-auto mb-4 object-cover" />
+          <img src={user.picture}  alt="Profile" className="rounded-full w-16 h-16 mx-auto mb-4 object-cover" />
           <h2 className="text-xl font-semibold">{user.name}</h2>
           <p className="text-gray-600">{user.email}</p>
-          <button
-            onClick={handleLogout}
-            className="mt-4 bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Logout
-          </button>
+          
         </div>
       ) : (
         <>
+        {error && (
+  <div className="text-destructive text-sm text-center mb-2">
+    {error}
+  </div>
+)}
           <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-4">
             <InputField
               icon={MdOutlineEmail}
@@ -72,7 +99,7 @@ export const GoogleLoginPage = () => {
             <BasicButtons
               name="LOGIN"
               type="submit"
-              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded transition duration-200"
+              className="w-full !bg-primary hover:bg-primary-hover text-primary-foreground font-semibold py-2 rounded transition duration-200"
             />
           </form>
 
@@ -88,7 +115,7 @@ export const GoogleLoginPage = () => {
 
       <div className="text-center text-sm text-gray-500 mt-6">
         Don't have an account?{" "}
-        <a href="/register" className="text-blue-500 font-semibold hover:underline">
+        <a href="/register" className="text-primary font-semibold hover:underline">
           Register Now
         </a>
       </div>
