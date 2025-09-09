@@ -39,7 +39,7 @@ export const RegisterPage = () => {
       localStorage.setItem('token', response.data.token);
       setToken(response.data.token);
       login(response.data.user); // Optional: login state if needed
-      navigate('/dashboard');
+      navigate('/');
     } catch (err) {
       console.error("Login failed:", err);
   
@@ -56,7 +56,7 @@ export const RegisterPage = () => {
   const handleGoogleSuccess = (userData) => {
     console.log("Google login successful:", userData);
     login(userData);
-    navigate('/dashboard') 
+    navigate('/') 
   };
 
   return (

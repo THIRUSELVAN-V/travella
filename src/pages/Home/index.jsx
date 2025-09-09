@@ -1,97 +1,121 @@
-import React, { useEffect, useState } from "react";
-import { Navbar } from "../../components";
+import React from "react";
+import { Slider } from "../../components";
 import beachImg from "../../assets/beach.jpg";
 import meghamalaiImg from "../../assets/meghamalai.avif";
 import kanyakumariImg from "../../assets/kanyakumari.jpg";
 import thanjavurImg from "../../assets/thanjavur.jpeg";
 import coutrallamImg from "../../assets/coutrallam.jpg";
 
-const images = [
-  { img: meghamalaiImg, label: "Meghamalai" },
-  { img: kanyakumariImg, label: "Kanyakumari" },
-  { img: thanjavurImg, label: "Thanjavur" },
-  { img: coutrallamImg, label: "Coutrallam" },
+const sliderItems = [
+  {
+    image: meghamalaiImg,
+    title: "Meghamalai",
+    subtitle: "The High Wavy Mountains",
+    description: "Discover the misty mountains and sprawling tea plantations of Meghamalai, where nature meets tranquility. This hidden gem offers breathtaking views, cool climate, and pristine landscapes perfect for nature lovers and adventure seekers.",
+    highlights: ["Tea Plantations", "Misty Mountains", "Cool Climate", "Nature Trails"],
+    bestTime: "October to March",
+    duration: "3-4 Days",
+    buttonText: "Explore Meghamalai"
+  },
+  {
+    image: kanyakumariImg,
+    title: "Kanyakumari",
+    subtitle: "Where Three Oceans Meet",
+    description: "Witness the spectacular sunrise and sunset at India's southernmost tip, where the Arabian Sea, Bay of Bengal, and Indian Ocean converge. Experience the spiritual significance and natural beauty of this unique coastal destination.",
+    highlights: ["Sunrise/Sunset Views", "Vivekananda Rock", "Thiruvalluvar Statue", "Beach Activities"],
+    bestTime: "October to March",
+    duration: "2-3 Days",
+    buttonText: "Visit Kanyakumari"
+  },
+  {
+    image: thanjavurImg,
+    title: "Thanjavur",
+    subtitle: "The Cultural Capital",
+    description: "Immerse yourself in the rich cultural heritage and magnificent temples of the ancient Chola capital. Explore UNESCO World Heritage sites, traditional arts, and architectural marvels that showcase Tamil Nadu's glorious past.",
+    highlights: ["Brihadeshwara Temple", "Art Galleries", "Traditional Crafts", "Cultural Heritage"],
+    bestTime: "October to March",
+    duration: "2-3 Days",
+    buttonText: "Discover Thanjavur"
+  },
+  {
+    image: coutrallamImg,
+    title: "Coutrallam",
+    subtitle: "The Healing Waters",
+    description: "Experience the refreshing waterfalls and natural beauty of Coutrallam's cascading waters. Known for its therapeutic properties and stunning landscapes, this destination offers relaxation and adventure in equal measure.",
+    highlights: ["Waterfalls", "Therapeutic Baths", "Natural Beauty", "Adventure Sports"],
+    bestTime: "June to September",
+    duration: "1-2 Days",
+    buttonText: "Explore Coutrallam"
+  }
 ];
 
 export const Home = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % images.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <div>
-      <Navbar />
-      <section
-        className="relative bg-cover bg-center min-h-screen pt-[80px]"
-        style={{ backgroundImage: `url(${beachImg})` }}
-      >
-        <div className="absolute inset-0 bg-black/40" />
+    <div className="w-full overflow-x-hidden">
+      {/* Hero Section with Slider */}
+      <section className="relative w-full overflow-hidden pt-12 mt-16 pb-8">
+        <Slider 
+          items={sliderItems}
+          autoPlay={true}
+          interval={2000}
+          showArrows={true}
+          showDots={true}
+          className="w-full"
+        />
+      </section>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 flex flex-col md:flex-row items-center justify-between h-full">
-          {/* Quotes */}
-          <div className="text-background max-w-xl space-y-6 mb-10 md:mb-0 md:mr-10">
-            <h1 className="text-5xl font-bold">Enjoy your</h1>
-            <h2 className="text-5xl font-semibold italic text-primary">Moment</h2>
-            <p className="text-lg text-baground leading-relaxed ">
-              Travel isn't about places, it's about moments. <br />
-              Moments that make you feel alive and free. <br />
-              Create memories that last a lifetime. <br />
-              Begin your adventure with us.
+      {/* Features Section */}
+      <section className="py-24 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="w-full h-full bg-gradient-to-br from-purple-500/5 to-pink-500/5"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="text-center mb-20">
+            <div className="inline-block mb-6">
+              <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-purple-400 to-transparent mx-auto"></div>
+            </div>
+            <h2 className="text-5xl md:text-6xl font-black mb-6 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
+              Why Choose Travella?
+            </h2>
+            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light">
+              We make travel planning effortless and memorable with our comprehensive services and local expertise.
             </p>
-            <button className="bg-primary hover:bg-primary-hover px-6 py-3 text-primary-foreground font-semibold rounded-md transition-all">
-              Explore
-            </button>
           </div>
-
-          {/* Deck of cards spread horizontally */}
-         <div className="relative w-[400px]   h-[320px] overflow-visible">
-  {images.map((card, i) => {
-    const index = (i - activeIndex + images.length) % images.length;
-
-    const offsetX = index * 10 - 30;
-    const offsetY = index * 6;
-    const scale = 1 - index * 0.03;
-    const rotate = index === 0 ? 0 : index * 6; 
-    const zIndex = images.length - index;
-    const isDisappearing = index === images.length - 1;
-
-    // Transform for disappearing card
-    const transform = isDisappearing
-      ? `translate(-300px, ${offsetY}px) scale(${scale}) rotate(-45deg)`
-      : `translate(-50%, ${offsetY}px) translateX(${offsetX}px) scale(${scale}) rotate(${rotate}deg)`;
-
-    return (
-      <div
-        key={i}
-        className="absolute top-0 left-1/2  transition-all duration-[800ms] ease-in-out"
-        style={{
-          transform,
-          opacity: isDisappearing ? 0 : 1,
-          zIndex,
-        }}
-      >
-        <div className="bg-card p-2  rounded-2xl shadow-2xlb text-center w-[300px] text-card-foreground">
-  <img
-    src={card.img}
-    alt={card.label}
-    className="w-full h-52 object-cover rounded-lg"
-  />
-  <p className="mt-3 text-lg font-semibold">{card.label}</p>
-</div>
-
-      </div>
-    );
-  })}
-</div>
-
-
-
-
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="group text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20">
+              <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-purple-300 transition-colors duration-300">Expert Local Guides</h3>
+              <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">Our experienced local guides know the hidden gems and best spots in every destination.</p>
+            </div>
+            
+            <div className="group text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20">
+              <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-blue-300 transition-colors duration-300">24/7 Support</h3>
+              <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">Round-the-clock assistance to ensure your journey is smooth and worry-free.</p>
+            </div>
+            
+            <div className="group text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-green-500/20">
+              <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-green-300 transition-colors duration-300">Best Price Guarantee</h3>
+              <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">We offer competitive prices and guarantee the best value for your travel experience.</p>
+            </div>
+          </div>
         </div>
       </section>
     </div>
