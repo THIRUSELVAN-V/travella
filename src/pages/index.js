@@ -7,6 +7,8 @@ export {AdminPanel} from "./AdminPanel";
 export {Login} from "./Login";
 export {Sample} from "./sample";
 export {StyleShowcase} from "./StyleShowcase";
+export { Destinations} from "./Destinations"
+
 
 
 
