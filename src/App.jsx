@@ -13,7 +13,7 @@ function App() {
   const shouldHideNavbar = hideNavbarRoutes.includes(location.pathname)
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <div className='min-h-screen '>
+      <div className='min-h-screen bg-background text-foreground'>
         <div className='w-full h-[72px] '>
         {!shouldHideNavbar && <Navbar/>}
         </div>

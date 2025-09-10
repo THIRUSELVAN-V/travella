@@ -64,7 +64,7 @@ export const GoogleLoginPage = () => {
         <div className="text-center">
           <img src={user.picture}  alt="Profile" className="rounded-full w-16 h-16 mx-auto mb-4 object-cover" />
           <h2 className="text-xl font-semibold">{user.name}</h2>
-          <p className="text-gray-600">{user.email}</p>
+          <p className="text-muted-foreground">{user.email}</p>
           
         </div>
       ) : (
@@ -91,7 +91,7 @@ export const GoogleLoginPage = () => {
               onChange={handleInputChange}
               placeholder="Enter password"
             />
-            <div className="flex justify-end text-xs text-gray-400 mb-2">
+            <div className="flex justify-end text-xs text-muted-foreground mb-2">
               <a href="#" className="hover:underline">
                 Forgot password?
               </a>
@@ -104,16 +104,16 @@ export const GoogleLoginPage = () => {
           </form>
 
           <div className="flex items-center my-4 w-full max-w">
-            <div className="flex-grow h-px bg-gray-200" />
-            <span className="mx-2 text-gray-400 text-sm">OR</span>
-            <div className="flex-grow h-px bg-gray-200" />
+            <div className="flex-grow h-px bg-border" />
+            <span className="mx-2 text-muted-foreground text-sm">OR</span>
+            <div className="flex-grow h-px bg-border" />
           </div>
 
           <GoogleLogin onSuccess={handleGoogleSuccess} />
         </>
       )}
 
-      <div className="text-center text-sm text-gray-500 mt-6">
+      <div className="text-center text-sm text-muted-foreground mt-6">
         Don't have an account?{" "}
         <a href="/register" className="text-primary font-semibold hover:underline">
           Register Now

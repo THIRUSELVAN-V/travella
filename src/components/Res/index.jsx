@@ -111,13 +111,13 @@ export const RegisterPage = () => {
         />
       </form>
       <div className="flex items-center my-4 w-full max-w">
-        <div className="flex-grow h-px bg-gray-200" />
-        <span className="mx-2 text-gray-400 text-sm">OR</span>
-        <div className="flex-grow h-px bg-gray-200" />
+        <div className="flex-grow h-px bg-border" />
+        <span className="mx-2 text-muted-foreground text-sm">OR</span>
+        <div className="flex-grow h-px bg-border" />
       </div>
       <GoogleLogin onSuccess={handleGoogleSuccess} />
 
-      <div className="text-center text-sm text-gray-500 mt-2">
+      <div className="text-center text-sm text-muted-foreground mt-2">
         Already have an account?{" "}
         <a href="/login" className="text-primary font-semibold hover:underline">
           Login here

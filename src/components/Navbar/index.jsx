@@ -52,7 +52,10 @@ export const Navbar = () => {
             </button>
           ) : (
             <div className="flex items-center gap-3">
-              <button onClick={() => navigate('/')} className="flex items-center gap-2 px-3 py-2 rounded-md border border-black/10 hover:bg-accent transition-colors">
+              <button 
+                onClick={() => navigate('/profile')}
+                className="flex items-center gap-2 px-3 py-2 rounded-md border border-black/10 hover:bg-accent transition-colors"
+              >
                 <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs">
                   {(user.name || user.email || 'U').charAt(0).toUpperCase()}
                 </div>

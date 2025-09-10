@@ -1,6 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { About, AdminPanel, Home, Login, NotFound, Unauthorized, Sample, StyleShowcase, Destinations, Planner, Offers, Booking, Contact, DestinationDetail } from '../pages'
+import { About, AdminPanel, Home, Login, NotFound, Unauthorized, Sample, StyleShowcase, Destinations, Planner, Offers, Booking, Contact, DestinationDetail, Profile } from '../pages'
 import ProtectedRoute from './ProtectedRoute'
 const AppRoutes = () => {
   return (
@@ -19,6 +19,7 @@ const AppRoutes = () => {
       <Route path="/offers" element={<Offers />} />
       <Route path="/booking" element={<ProtectedRoute><Booking /></ProtectedRoute>} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   )

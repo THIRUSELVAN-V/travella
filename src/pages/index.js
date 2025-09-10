@@ -12,6 +12,7 @@ export { default as Offers } from "./Offers";
 export { default as Booking } from "./Booking";
 export { default as Contact } from "./Contact";
 export { default as DestinationDetail } from "./DestinationDetail";
+export { Profile } from "./Profile";
 
 
 

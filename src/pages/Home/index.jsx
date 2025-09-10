@@ -65,7 +65,7 @@ export const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-24 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
+      <section className="py-24 bg-gradient-to-br from-background via-accent to-background relative overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0 opacity-20">
           <div className="w-full h-full bg-gradient-to-br from-purple-500/5 to-pink-500/5"></div>
@@ -76,44 +76,44 @@ export const Home = () => {
             <div className="inline-block mb-6">
               <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-purple-400 to-transparent mx-auto"></div>
             </div>
-            <h2 className="text-5xl md:text-6xl font-black mb-6 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
+            <h2 className="text-5xl md:text-6xl font-black mb-6 bg-gradient-to-r from-foreground via-primary to-accent-foreground bg-clip-text text-transparent">
               Why Choose Travella?
             </h2>
-            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light">
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light">
               We make travel planning effortless and memorable with our comprehensive services and local expertise.
             </p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="group text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20">
-              <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="group text-center p-8 rounded-2xl bg-card/50 backdrop-blur-sm border border-border hover:bg-card transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20">
+              <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent-foreground rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <svg className="w-10 h-10 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-purple-300 transition-colors duration-300">Expert Local Guides</h3>
-              <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">Our experienced local guides know the hidden gems and best spots in every destination.</p>
+              <h3 className="text-2xl font-bold mb-4 text-foreground group-hover:text-primary transition-colors duration-300">Expert Local Guides</h3>
+              <p className="text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors duration-300">Our experienced local guides know the hidden gems and best spots in every destination.</p>
             </div>
             
-            <div className="group text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20">
-              <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="group text-center p-8 rounded-2xl bg-card/50 backdrop-blur-sm border border-border hover:bg-card transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20">
+              <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent-foreground rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <svg className="w-10 h-10 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-blue-300 transition-colors duration-300">24/7 Support</h3>
-              <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">Round-the-clock assistance to ensure your journey is smooth and worry-free.</p>
+              <h3 className="text-2xl font-bold mb-4 text-foreground group-hover:text-primary transition-colors duration-300">24/7 Support</h3>
+              <p className="text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors duration-300">Round-the-clock assistance to ensure your journey is smooth and worry-free.</p>
             </div>
             
-            <div className="group text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-green-500/20">
-              <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="group text-center p-8 rounded-2xl bg-card/50 backdrop-blur-sm border border-border hover:bg-card transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20">
+              <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent-foreground rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <svg className="w-10 h-10 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-green-300 transition-colors duration-300">Best Price Guarantee</h3>
-              <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">We offer competitive prices and guarantee the best value for your travel experience.</p>
+              <h3 className="text-2xl font-bold mb-4 text-foreground group-hover:text-primary transition-colors duration-300">Best Price Guarantee</h3>
+              <p className="text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors duration-300">We offer competitive prices and guarantee the best value for your travel experience.</p>
             </div>
           </div>
         </div>
