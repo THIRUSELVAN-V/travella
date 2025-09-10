@@ -1,5 +1,6 @@
 import React from "react";
 import { Slider } from "../../components";
+import UnifiedLayout from "../../components/UnifiedLayout";
 import beachImg from "../../assets/beach.jpg";
 import meghamalaiImg from "../../assets/meghamalai.avif";
 import kanyakumariImg from "../../assets/kanyakumari.jpg";
@@ -51,9 +52,14 @@ const sliderItems = [
 
 export const Home = () => {
   return (
-    <div className="w-full overflow-x-hidden">
+    <UnifiedLayout >
+      <header className="mb-8">
+        <h1 className="text-3xl font-bold">Welcome to Travella</h1>
+        <p className="text-slate-400 mt-2">Discover amazing destinations and plan your perfect trip</p>
+      </header>
+
       {/* Hero Section with Slider */}
-      <section className="relative w-full overflow-hidden pt-12 mt-16 pb-8">
+      <section className="relative w-full overflow-hidden mb-8">
         <Slider 
           items={sliderItems}
           autoPlay={true}
@@ -64,60 +70,72 @@ export const Home = () => {
         />
       </section>
 
+      {/* Quick Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="flex flex-col gap-2 rounded-lg p-6 bg-slate-900">
+          <p className="text-slate-400 text-sm font-medium">Destinations</p>
+          <p className="text-3xl font-bold">50+</p>
+        </div>
+        <div className="flex flex-col gap-2 rounded-lg p-6 bg-slate-900">
+          <p className="text-slate-400 text-sm font-medium">Happy Travelers</p>
+          <p className="text-3xl font-bold">10,000+</p>
+        </div>
+        <div className="flex flex-col gap-2 rounded-lg p-6 bg-slate-900">
+          <p className="text-slate-400 text-sm font-medium">Years Experience</p>
+          <p className="text-3xl font-bold">15+</p>
+        </div>
+      </div>
+
       {/* Features Section */}
-      <section className="py-24 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="w-full h-full bg-gradient-to-br from-purple-500/5 to-pink-500/5"></div>
+      <section className="py-12 relative overflow-hidden">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4">Why Choose Travella?</h2>
+          <p className="text-slate-400 max-w-2xl mx-auto">
+            We make travel planning effortless and memorable with our comprehensive services and local expertise.
+          </p>
         </div>
         
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-20">
-            <div className="inline-block mb-6">
-              <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-purple-400 to-transparent mx-auto"></div>
+        <div className="grid md:grid-cols-3 gap-6">
+          <div className="group text-center p-6 rounded-lg bg-slate-900 hover:bg-slate-800 transition-all duration-300">
+            <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <span className="material-symbols-outlined text-white text-2xl">place</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-black mb-6 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
-              Why Choose Travella?
-            </h2>
-            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light">
-              We make travel planning effortless and memorable with our comprehensive services and local expertise.
-            </p>
+            <h3 className="text-xl font-bold mb-3 text-white">Expert Local Guides</h3>
+            <p className="text-slate-400 text-sm">Our experienced local guides know the hidden gems and best spots in every destination.</p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="group text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20">
-              <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-purple-300 transition-colors duration-300">Expert Local Guides</h3>
-              <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">Our experienced local guides know the hidden gems and best spots in every destination.</p>
+          <div className="group text-center p-6 rounded-lg bg-slate-900 hover:bg-slate-800 transition-all duration-300">
+            <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <span className="material-symbols-outlined text-white text-2xl">support_agent</span>
             </div>
-            
-            <div className="group text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20">
-              <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-blue-300 transition-colors duration-300">24/7 Support</h3>
-              <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">Round-the-clock assistance to ensure your journey is smooth and worry-free.</p>
+            <h3 className="text-xl font-bold mb-3 text-white">24/7 Support</h3>
+            <p className="text-slate-400 text-sm">Round-the-clock assistance to ensure your journey is smooth and worry-free.</p>
+          </div>
+          
+          <div className="group text-center p-6 rounded-lg bg-slate-900 hover:bg-slate-800 transition-all duration-300">
+            <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <span className="material-symbols-outlined text-white text-2xl">verified</span>
             </div>
-            
-            <div className="group text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-green-500/20">
-              <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-green-300 transition-colors duration-300">Best Price Guarantee</h3>
-              <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">We offer competitive prices and guarantee the best value for your travel experience.</p>
-            </div>
+            <h3 className="text-xl font-bold mb-3 text-white">Best Price Guarantee</h3>
+            <p className="text-slate-400 text-sm">We offer competitive prices and guarantee the best value for your travel experience.</p>
           </div>
         </div>
       </section>
-    </div>
+
+      {/* Quick Actions */}
+      <div className="mb-8">
+        <h2 className="text-xl font-bold mb-4">Quick Actions</h2>
+        <div className="flex gap-4">
+          <button className="flex items-center justify-center rounded-md h-10 px-4 bg-blue-600 text-white text-sm font-bold hover:bg-blue-700 transition-colors">
+            <span className="material-symbols-outlined mr-2">explore</span>
+            <span className="truncate">Explore Destinations</span>
+          </button>
+          <button className="flex items-center justify-center rounded-md h-10 px-4 bg-slate-800 text-white text-sm font-bold hover:bg-slate-700 transition-colors">
+            <span className="material-symbols-outlined mr-2">event_note</span>
+            <span className="truncate">Plan My Trip</span>
+          </button>
+        </div>
+      </div>
+    </UnifiedLayout>
   );
 };

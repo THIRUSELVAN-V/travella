@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { destinationsAPI } from "../../axious/destinationsAPI";
+import UnifiedLayout from "../../components/UnifiedLayout";
 
 export default function Destinations() {
   const navigate = useNavigate();
@@ -38,12 +39,11 @@ export default function Destinations() {
   }, []);
 
   return (
-    <div className="p-6 flex flex-1 justify-center py-5">
-      <div className="  flex flex-col w-full max-w-[1080px] flex-1">
-        {/* Popular Destinations */}
-        <h2 className="text-[#0d141c]  text-[22px] font-bold px-1 md:px-4 pb-3 pt-5">
-          Popular Destinations
-        </h2>
+    <UnifiedLayout>
+      <header className="mb-8">
+        <h1 className="text-3xl font-bold">Popular Destinations</h1>
+        <p className="text-slate-400 mt-2">Discover amazing places to visit</p>
+      </header>
         {isLoading && (
           <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-3 mt-4">
             {Array.from({ length: 6 }).map((_, idx) => (
@@ -63,7 +63,7 @@ export default function Destinations() {
           <div className="p-4 text-red-600 dark:text-red-400">{errorMessage}</div>
         )}
         {!isLoading && !errorMessage && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 p-8 md:p-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
             {popularDestinations.map((place, index) => {
               const imageUrl = place.image || place.photo || place.coverImage || (place.images && place.images[0] && place.images[0].url) || "";
               const title = place.name || place.title || "Untitled";
@@ -77,7 +77,7 @@ export default function Destinations() {
               return (
                 <div
                   key={index}
-                  className="group relative rounded-xl overflow-hidden border border-black/10 bg-white dark:bg-[#0d141c] shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+                  className="group relative rounded-lg overflow-hidden bg-slate-900 shadow-sm hover:shadow-md transition-shadow cursor-pointer"
                   onClick={() => navigate(`/destinations/${encodeURIComponent(place._id || place.id || '')}`)}
                 >
                   <div className="relative w-full aspect-video">
@@ -85,7 +85,7 @@ export default function Destinations() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                     <div className="absolute top-2 left-2 flex gap-2">
                       {category ? (
-                        <span className="px-3 py-1 text-xs rounded-full bg-white/90  dark:bg-black/60 text-[#0d141c] dark:text-white backdrop-blur">
+                        <span className="px-3 py-1 text-xs rounded-full bg-white/90 text-slate-900 backdrop-blur">
                           {category}
                         </span>
                       ) : null}
@@ -100,31 +100,30 @@ export default function Destinations() {
                       </div>
                     ) : null}
                     {priceAmount ? (
-                      <div className="absolute bottom-2 right-2 px-2 py-1 text-xs rounded-md bg-white/90 dark:bg-black/60 text-[#0d141c] dark:text-white">
+                      <div className="absolute bottom-2 right-2 px-2 py-1 text-xs rounded-md bg-white/90 text-slate-900">
                         {priceCurrency ? `${priceCurrency} ` : ""}{priceAmount}
                       </div>
                     ) : null}
                   </div>
-                  <div className="p-3">
-                    <h3 className="text-[#0d141c] dark:text-white text-sm font-semibold line-clamp-1 group-hover:underline">
+                  <div className="p-4">
+                    <h3 className="text-white text-lg font-semibold line-clamp-1 group-hover:underline">
                       {title}
                     </h3>
                     {locationText ? (
-                      <p className="text-[#49739c] dark:text-gray-300 text-xs mt-0.5 line-clamp-1">{locationText}</p>
+                      <p className="text-slate-400 text-sm mt-1 line-clamp-1">{locationText}</p>
                     ) : null}
                     {description ? (
-                      <p className="text-[#49739c] dark:text-gray-300 text-xs mt-1 line-clamp-2">{description}</p>
+                      <p className="text-slate-400 text-sm mt-2 line-clamp-2">{description}</p>
                     ) : null}
                   </div>
                 </div>
               );
             })}
             {popularDestinations.length === 0 && (
-              <div className="p-4 text-[#49739c] dark:text-gray-300">No destinations found.</div>
+              <div className="p-4 text-slate-400">No destinations found.</div>
             )}
           </div>
         )}
-      </div>
-    </div>
+    </UnifiedLayout>
   );
 }

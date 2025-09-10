@@ -31,7 +31,13 @@ export const GoogleLoginPage = () => {
     localStorage.setItem('token', response.data.token);
     setToken(response.data.token);
     login(response.data.user); // Optional: login state if needed
-    navigate('/');
+    
+    // Check user role and redirect accordingly
+    if (response.data.user?.role === 'admin') {
+      navigate('/admin/dashboard');
+    } else {
+      navigate('/');
+    }
   } catch (err) {
     console.error("Login failed:", err);
 
@@ -47,7 +53,13 @@ export const GoogleLoginPage = () => {
   const handleGoogleSuccess = (userData) => {
     console.log("Google login successful:", userData);
     login(userData);
-    navigate('/') 
+    
+    // Check user role and redirect accordingly
+    if (userData?.role === 'admin') {
+      navigate('/admin');
+    } else {
+      navigate('/');
+    }
   };
 
   const handleLogout = () => {

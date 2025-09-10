@@ -19,9 +19,9 @@ export const useAuthStore = create((set) => ({
     set({ user: null })
   },
 
-  isAuthenticated: () => !!JSON.parse(localStorage.getItem('user')),
+  isAuthenticated: () => !!JSON.parse(localStorage.getItem('user'|| 'admin')),
   getRole: () => {
     const user = JSON.parse(localStorage.getItem('user'))
-    return user?.role || null
+    return user?.role || JSON.parse(localStorage.getItem('admin'))?.role || null
   },
 }))
